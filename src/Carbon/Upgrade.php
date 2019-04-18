@@ -7,30 +7,23 @@ use Composer\Script\Event;
 class Upgrade
 {
     protected static $laravelLibraries = array(
-        'laravel/framework',
-        'laravel/cashier',
-        'illuminate/support',
-        'laravel/dusk',
+        'laravel/framework' => '5.8.0',
+        'laravel/cashier' => '9.0.1',
+        'illuminate/support' => '5.8.0',
+        'laravel/dusk' => '5.0.0',
     );
 
     protected static $otherLibraries = array(
-        'spatie/laravel-analytics',
-        'jenssegers/date',
+        'spatie/laravel-analytics' => '3.6.4',
+        'jenssegers/date' => '3.5.0',
     );
-
-    /**
-     * andersao/l5-repository
-     * Zizaco/entrust
-     * tymondesigns/jwt-auth
-     * beberlei/DoctrineExtensions
-     */
 
     public static function warn(Event $event)
     {
         $event->getIO()->write(array(
             '**********************************************',
             " /!\ Warning, you're using a end-of-life",
-            'version of Carbon',
+            ' ¨¨¨ version of Carbon',
             '**********************************************',
         ));
     }
