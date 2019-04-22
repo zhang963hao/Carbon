@@ -31,7 +31,7 @@ class Upgrade
     public static function upgrade(Event $event)
     {
         $package = dirname($event->getComposer()->getConfig()->get('vendor-dir')).'/composer.json';
-        $data = json_decode(file_get_contents($package));
+        $data = json_decode(file_get_contents($package), JSON_OBJECT_AS_ARRAY);
 
         foreach (array('', '-dev') as $environment) {
             if (isset($data["require$environment"], $data["require$environment"]['nesbot/carbon'])) {
@@ -39,6 +39,6 @@ class Upgrade
             }
         }
 
-        file_put_contents($package, json_encode($data, JSON_PRETTY_PRINT));
+        file_put_contents($package, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)."\n");
     }
 }

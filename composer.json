@@ -50,6 +50,9 @@
         "phpcs": "php-cs-fixer fix -v --diff --dry-run",
         "phpstan": "phpstan analyse --configuration phpstan.neon --level 3 src tests",
         "post-autoload-dump": "Carbon\\Upgrade::warn",
+        "post-root-package-install": "Carbon\\Upgrade::warn",
+        "post-package-install": "Carbon\\Upgrade::warn",
+        "post-package-update": "Carbon\\Upgrade::warn",
         "upgrade-carbon": "Carbon\\Upgrade::upgrade"
     },
     "extra": {
