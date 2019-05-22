@@ -2,9 +2,13 @@
 
 namespace Carbon;
 
-use Composer\Script\Event;
+use Composer\Composer;
+use Composer\EventDispatcher\Event;
+use Composer\IO\IOInterface;
+use Composer\Script\Event as ScriptEvent;
+use UpdateHelper\UpdateHelperInterface;
 
-class Upgrade
+class Upgrade implements UpdateHelperInterface
 {
     protected static $laravelLibraries = array(
         'laravel/framework' => '5.8.0',
@@ -18,9 +22,14 @@ class Upgrade
         'jenssegers/date' => '3.5.0',
     );
 
-    public static function warn(Event $event)
+    /**
+     * @param \Composer\Installer\PackageEvent|\Composer\Script\Event $event
+     * @param \Composer\IO\IOInterface                               $io
+     * @param \Composer\Composer                                     $composer
+     */
+    public function check(Event $event, IOInterface $io, Composer $composer)
     {
-        $event->getIO()->write(array(
+        $io->write(array(
             '**********************************************',
             " /!\ Warning, you're using a end-of-life",
             ' ¨¨¨ version of Carbon',
@@ -28,7 +37,7 @@ class Upgrade
         ));
     }
 
-    public static function upgrade(Event $event)
+    public static function upgrade(ScriptEvent $event)
     {
         $package = dirname($event->getComposer()->getConfig()->get('vendor-dir')).'/composer.json';
         $data = json_decode(file_get_contents($package), JSON_OBJECT_AS_ARRAY);
