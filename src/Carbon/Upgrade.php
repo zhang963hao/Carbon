@@ -31,8 +31,10 @@ class Upgrade implements UpdateHelperInterface
     {
         $io->write(array(
             '**********************************************',
-            " /!\ Warning, you're using a end-of-life",
-            ' ¨¨¨ version of Carbon',
+            " /!\ Warning, you're using a deprecated",
+            ' ¨¨¨ version of Carbon, we will soon stop',
+            '     providing support and update for 1.x',
+            '     versions, please upgrade to Carbon 2.',
             '**********************************************',
         ));
     }
