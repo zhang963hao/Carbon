@@ -24,8 +24,8 @@ class Upgrade implements UpdateHelperInterface
 
     /**
      * @param \Composer\Installer\PackageEvent|\Composer\Script\Event $event
-     * @param \Composer\IO\IOInterface                               $io
-     * @param \Composer\Composer                                     $composer
+     * @param \Composer\IO\IOInterface                                $io
+     * @param \Composer\Composer                                      $composer
      */
     public function check(Event $event, IOInterface $io, Composer $composer)
     {
